@@ -13,4 +13,4 @@ set(SOURCE_FILES
         ueb9_bewegen.cpp
         ueb9_fenster.cpp
 )
-add_executable(Ueb9 ${SOURCE_FILES})
+add_executable(Ueb9 WIN32 ${SOURCE_FILES})
