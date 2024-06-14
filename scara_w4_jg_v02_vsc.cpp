@@ -3,12 +3,12 @@
 // Cosinus-Satzes) Autor: Julian Gaiser /MBB3C Datum 27.12.10 basiert auf den Konventionen von SCARA-Modell.doc Programmname SuchenWinkel Eingaben double
 // sollpunkt[2], 				double l1, double l2, double alpha1[2],double alpha2[2] double sollpunkt[2]:
 // Adresse der x,y Koordinaten des Roboterendrehpunktes bezogen auf den Ursprungshiftpunkt (0,0) !!! double l1, double l2
-// Länge der Arme 1 und 2 (Abstand zwischen Ursprung(Px.6) und Endrehpunkt (Px.7) double alpha1[2],double alpha2[2])	Adresse der Winkelstellungen von Arm1
-// und Arm2 gegenüber der Senkrechten
-//										es können 2, eine oder keine Lösungen geben
-// Ausgabe	int							0: keine Lösung; 1: eine Lösung; 2: 2 Lösungen:
-// möglicher ext. Aufruf des Programmes:anz_loesungen=SuchenWinkel(sollpunkt_0, l1, l2, alpha1, alpha2);
-// L1,L2 = Länge Roboarm1,Roboarm2
+// Laenge der Arme 1 und 2 (Abstand zwischen Ursprung(Px.6) und Endrehpunkt (Px.7) double alpha1[2],double alpha2[2])	Adresse der Winkelstellungen von Arm1
+// und Arm2 gegenueber der Senkrechten
+//										es koennen 2, eine oder keine Loesungen geben
+// Ausgabe	int							0: keine Loesung; 1: eine Loesung; 2: 2 Loesungen:
+// moeglicher ext. Aufruf des Programmes:anz_loesungen=SuchenWinkel(sollpunkt_0, l1, l2, alpha1, alpha2);
+// L1,L2 = Laenge Roboarm1,Roboarm2
 
 //---------------------------------------------------------------------------------------------------------------------
 #include <math.h>
@@ -33,11 +33,11 @@ int SuchenWinkel(double sollpunkt[2], double L1, double L2, double alpha1[2], do
   a4 = yp / r;
 
   if (yp >= 0) a11 = -asin(a3);
-  if (yp <= 0) a11 = -acos(a4);  // Berechnung des Ersten Winkels für linkes geknickt
+  if (yp <= 0) a11 = -acos(a4);  // Berechnung des Ersten Winkels fuer linkes geknickt
   if (yp <= 0 && xp <= 0) a11 = acos(a4);
 
   if (yp >= 0) a12 = asin(a3);
-  if (yp <= 0) a12 = acos(a4);  // Berechnung des Ersten Winkels für rechts geknickt
+  if (yp <= 0) a12 = acos(a4);  // Berechnung des Ersten Winkels fuer rechts geknickt
   if (yp <= 0 && xp <= 0) a12 = -acos(a4);
   a2 = acos(a0);  // Winkel des geknickten Armes
 

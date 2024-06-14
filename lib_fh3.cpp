@@ -31,7 +31,7 @@ int punkte_r(double punkte[][2], const char* dateiname)  // siehe auch Kapitel 1
 }
 
 void BildschirmMittig01mm(HDC hdc, HWND hwnd, RECT rect) {
-  SetMapMode(hdc, MM_LOMETRIC);  // Bildschirm 0,1 mm, x rechts, y aufwärts
+  SetMapMode(hdc, MM_LOMETRIC);  // Bildschirm 0,1 mm, x rechts, y aufwaerts
   GetClientRect(hwnd, &rect);    // holt sich die akt. Rechteckpos. (rect.left, rect.top, rect.right, rect.bottom
   SetViewportOrgEx(hdc, (rect.right - rect.left) / 2, -(rect.top - rect.bottom) / 2, NULL);
   // setzt Koordinatenursp. mittig

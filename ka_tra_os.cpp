@@ -1,7 +1,7 @@
 /********************************************************************/
 /* Programmname:     prog4_1                                        */
 /* Dateiname:        prog4_1.c                                      */
-/* Autor:            Georg Krüll                                  */
+/* Autor:            Georg Kruell                                  */
 /* Letzte Aenderung: 17.02.2020                                     */
 /********************************************************************/
 /* Programmbeschreibung:                                            */

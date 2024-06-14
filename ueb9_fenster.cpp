@@ -23,16 +23,23 @@ double sollpunkt_0[2];  // der Sollpunkt im Bildschirmkoordinatensystem
 
 // arm Arm[2];
 rob Robbi[5];
+rob& rl = Robbi[0];  // Referenz auf Roboter links
+rob& rr = Robbi[1];  // Referenz auf Roboter rechts
 
 struct element wst[100];
 int anz_wst;
+
+Montauf montauf[2];
+
+double kabel[100];
+int anz_kabel;
 
 double band[100][2];
 int anz_bandpunkte;
 double v_band;
 
 double form_ws[100][2];
-double anz_form_ws_punkte;
+int anz_form_ws_punkte;
 
 double koerper[1000][2];
 int anz_koerper_punkte;
@@ -86,27 +93,27 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 
   hwnd = CreateWindow(
 
-      szAppName, TEXT("Unser erstes Fenster für mb3b"), WS_OVERLAPPEDWINDOW, 100, 50,
+      szAppName, TEXT("Unser erstes Fenster fuer mb3b"), WS_OVERLAPPEDWINDOW, 100, 50,
       /*CW_USEDEFAULT,
       CW_USEDEFAULT,*/
-      1000, 400, NULL, NULL, hInstance, NULL
+      1000, 600, NULL, NULL, hInstance, NULL
 
   );
 
   stift[0] = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));      // durchgezogen, dicke 1,
   stift[1] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));    // durchgezogen, dicke 1, rpt
-  stift[2] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));    // durchgezogen, dicke 1, grün
+  stift[2] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));    // durchgezogen, dicke 1, gruen
   stift[3] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));    // durchgezogen, dicke 1, Blau?
   stift[4] = CreatePen(PS_SOLID, 1, RGB(255, 255, 0));  // durchgezogen, dicke 1, gelb
 
   stift1 = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));   // durchgezogen, dicke 1, schwarz
-  stift2 = CreatePen(PS_DASH, 1, RGB(0, 255, 0));  // gestrichelt, dicke 1, grün
+  stift2 = CreatePen(PS_DASH, 1, RGB(0, 255, 0));  // gestrichelt, dicke 1, gruen
   stift3 = CreatePen(PS_DOT, 1, RGB(0, 0, 255));
 
-  hintergrund1 = CreateSolidBrush(RGB(0, 255, 0));              // Flaeche grün
-  hintergrund2 = CreateHatchBrush(HS_CROSS, RGB(255, 255, 0));  // über kreuz gelb
+  hintergrund1 = CreateSolidBrush(RGB(0, 255, 0));              // Flaeche gruen
+  hintergrund2 = CreateHatchBrush(HS_CROSS, RGB(255, 255, 0));  // ueber kreuz gelb
   hintergrund[0] = CreateSolidBrush(RGB(255, 255, 255));        // Flaeche schwarz
-  hintergrund[1] = CreateSolidBrush(RGB(0, 255, 0));            // Flaeche grün
+  hintergrund[1] = CreateSolidBrush(RGB(0, 255, 0));            // Flaeche gruen
   hintergrund[2] = CreateSolidBrush(RGB(255, 255, 0));          // Flaeche gelb
 
   ShowWindow(hwnd, iCmdShow);
@@ -139,43 +146,59 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
     case WM_KEYDOWN:  // Tastatursteuerung
       switch (wParam) {
         //
+        case 'A':
+          Robbi[0].xe -= 10;
+          movexy(hwnd);
+          break;  // Pfeiltaste links
+        case 'S':
+          Robbi[0].ye += 10;
+          movexy(hwnd);
+          break;  // Pfeiltaste unten
+        case 'D':
+          Robbi[0].xe += 10;
+          movexy(hwnd);
+          break;  // Pfeiltaste rechts
+        case 'W':
+          Robbi[0].ye -= 10;
+          movexy(hwnd);
+          break;  // Pfeiltaste oben
         case VK_LEFT:
-          Robbi[0].xe = Robbi[0].xe - 10;
+          Robbi[1].xe -= 10;
           movexy(hwnd);
           break;  // Pfeiltaste links
         case VK_DOWN:
-          Robbi[0].ye = Robbi[0].ye + 10;
+          Robbi[1].ye += 10;
           movexy(hwnd);
           break;  // Pfeiltaste unten
         case VK_RIGHT:
-          Robbi[0].xe = Robbi[0].xe + 10;
+          Robbi[1].xe += 10;
           movexy(hwnd);
           break;  // Pfeiltaste rechts
         case VK_UP:
-          Robbi[0].ye = Robbi[0].ye - 10;
+          Robbi[1].ye -= 10;
           movexy(hwnd);
           break;  // Pfeiltaste oben
-        case 'D':
+        case 'X':
           Robbi[0].ye = Robbi[0].ye - 10;
           Robbi[0].xe = Robbi[0].xe + 10;
           movexy(hwnd);
           break;  // Eingabe von "d" ->diagonal
         case 'G':
           wst[3].greifer = 1;
-          break;  // Werkstück 4 'Gegriffen
+          break;  // Werkstueck 4 'Gegriffen
         case 'L':
           wst[3].greifer = 0;
-          break;  // Werkstück 4 losgelassen
+          break;  // Werkstueck 4 losgelassen
         case 'R':
           wst[3].winkel = wst[3].winkel + 5;
           movexy(hwnd);
-          break;  // Werkstück 4 drehen
+          break;  // Werkstueck 4 drehen
         case '1':
           Robbi[0].linie_ein = 1;
-          break;  // Sprühdose ein
+          break;  // Spruehdose ein
         case '0':
           Robbi[0].linie_ein = 0;
-          break;  // Sprühdose aus
+          break;  // Spruehdose aus
       }
   }
 

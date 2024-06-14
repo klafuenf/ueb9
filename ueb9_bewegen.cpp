@@ -27,26 +27,42 @@ void bewegen(HWND hwnd) {
       Robbi[i].origin[0] = Robbi[i].origin_a[0] + (t / t_max) * (Robbi[i].origin_e[0] - Robbi[i].origin_a[0]);
       // Interpolation der Verschiebung der Roboterpos in x-richtung
       Robbi[i].origin[1] = Robbi[i].origin_a[1] + (t / t_max) * (Robbi[i].origin_e[1] - Robbi[i].origin_a[1]);
-      // für den Fall, dass man den Robbi in y verschieben möchte
+      // fuer den Fall, dass man den Robbi in y verschieben moechte
       Robbi[i].calc(sollpunkt_0);
     }  // for i < anz_rob...
     for (i = 0; i < anz_wst; i++) {
-      if (wst[i].greifer == 1)  // vom Robbi gegriffen
+      if (wst[i].greifer == 1)  // vom Robbi 1 gegriffen
       {
-        wst[i].x = Robbi[0].getposx();
-        wst[i].y = Robbi[0].getposy();
+        wst[i].x = rl.getposx();
+        wst[i].y = rl.getposy();
+      } else if (wst[i].greifer == 2)  // vom Robbi 2 gegriffen
+      {
+        wst[i].x = rr.getposx();
+        wst[i].y = rr.getposy();
       }
-      if (wst[i].greifer == 2)  // vom band gegriffen
+      if (wst[i].greifer == 3)  // vom band gegriffen
       {
         wst[i].x = wst[i].x + v_band * t_step;
         wst[i].winkel = wst[i].winkel + 0.1 * t_step;
       }
-    }                                  // for i y anz_wst
+    }  // for i y anz_wst
+    for (i = 0; i < 2; i++) {
+      if (montauf[i].greifer == 1) {
+        montauf[i].x = rl.getposx();
+        montauf[i].y = rl.getposy();
+      }
+      if (montauf[i].greifer == 2) {
+        montauf[i].x = rr.getposx();
+        montauf[i].y = rr.getposy();
+      }
+    }
+
     InvalidateRect(hwnd, NULL, TRUE);  // leert den Bildschirm
     hdc = BeginPaint(hwnd, &ps);       // beginnt, neu zu zeichnen
 
     PaintPolygon(hwnd, band, anz_bandpunkte - 1);
     PaintWst(hwnd, wst, anz_wst);
+    PaintMontauf(hwnd, montauf, 2);
     for (i = 0; i < anz_rob; i++) {
       Robbi[i].show();
     }
@@ -68,14 +84,4 @@ void bewegen(HWND hwnd) {
     Robbi[i].set_anfang_zu_ende();
   }
 
-  /////////// folgende Zeilen nur zur Demo, dass sich mehrere Roboter gleichzeitig bewegen können (hier Robbi[2 pendelt hin und her auf horizontal zur x-Achse]
-  ///gleichzeitig bewegen können
-  if (Robbi[2].xe > 400 && richtung2 == 1) {
-    richtung2 = -1;
-  }
-  if (Robbi[2].xe < 200 && richtung2 == -1) {
-    richtung2 = 1;
-  }
-  Robbi[2].xe = Robbi[2].xe + richtung2 * 30;
-  ///////////////////////////////////////
 }  // bewegen
