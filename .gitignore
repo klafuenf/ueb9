@@ -1,5 +1,10 @@
 .idea/
 cmake-*/
+out/
+x64/
+.vs/
+G48BBFK/
+
 
 # Prerequisites
 *.d
