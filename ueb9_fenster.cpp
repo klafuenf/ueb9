@@ -47,6 +47,7 @@ int anz_koerper_punkte;
 int anz_rob;
 
 HPEN stift1, stift2, stift3, stift[5];
+HPEN rot_striche;
 HBRUSH hintergrund1, hintergrund2;
 HBRUSH hintergrund[3];
 HDC hdc;
@@ -109,6 +110,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
   stift1 = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));   // durchgezogen, dicke 1, schwarz
   stift2 = CreatePen(PS_DASH, 1, RGB(0, 255, 0));  // gestrichelt, dicke 1, gruen
   stift3 = CreatePen(PS_DOT, 1, RGB(0, 0, 255));
+  rot_striche = CreatePen(PS_DOT, 1, RGB(255, 0, 0));
 
   hintergrund1 = CreateSolidBrush(RGB(0, 255, 0));              // Flaeche gruen
   hintergrund2 = CreateHatchBrush(HS_CROSS, RGB(255, 255, 0));  // ueber kreuz gelb

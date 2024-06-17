@@ -62,13 +62,15 @@ void unterprog1(HWND hwnd, HDC hdc, RECT rect) {
 
   Robbi[0].getgeo("arm1.txt", "arm2.txt");
   Robbi[1].getgeo("arm1.txt", "arm2.txt");
-  Robbi[2].getgeo("arm1.txt", "arm2d.txt");
-  Robbi[3].getgeo("arm1.txt", "arm2d.txt");
-  Robbi[4].getgeo("arm1.txt", "arm2d.txt");
+  //Robbi[2].getgeo("arm1.txt", "arm2.txt");
+  //Robbi[3].getgeo("arm1.txt", "arm2.txt");
+  //Robbi[4].getgeo("arm1.txt", "arm2.txt");
+
+  anz_kabel = kabel_lesen(kabel, "kabel.txt");
 
   Robbi[0].set_color(2, 3);  /// Farbe 1 fuer Arm_1, Farbe 2 fuer Arm_2
   rr.set_knick(1);
-  anz_wst = 20 * 2;  // immer gerade Anzahl
+  anz_wst = (anz_kabel+1) * 2;  // immer gerade Anzahl
   for (i = 0; i < anz_wst; i++) {
     wst[i].x = reservoir[0];
     wst[i].y = reservoir[1];
@@ -81,10 +83,8 @@ void unterprog1(HWND hwnd, HDC hdc, RECT rect) {
 
   anz_bandpunkte = punkte_r(band, "band.txt");
   anz_form_ws_punkte = punkte_r(form_ws, "form_wst.txt");
-  anz_koerper_punkte = punkte_r(koerper, "koerper8.txt");
   double ablage[] = {band[anz_bandpunkte - 1][0], band[anz_bandpunkte - 1][1]};
 
-  anz_kabel = kabel_lesen(kabel, "kabel.txt");
 
   for (i = 0; i < anz_rob; i++) {
     Robbi[i].origin[0] = verschiebung[0];  // kann ggf entfallen

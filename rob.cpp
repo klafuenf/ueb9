@@ -49,7 +49,7 @@ void rob::calc(double* sollpunkt_0) {
 
 void rob::show() {
   int i;
-  SelectObject(hdc, stift3);
+  SelectObject(hdc, rot_striche);
   for (i = 0; i <= rob::l; i++) {
     MoveToEx(hdc, (int)rob::linien[i][0][0], (int)rob::linien[i][0][1], NULL);
     LineTo(hdc, (int)rob::linien[i][1][0], (int)rob::linien[i][1][1]);

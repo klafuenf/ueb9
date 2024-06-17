@@ -146,8 +146,6 @@
   <ItemGroup>
     <Text Include="arm1.txt" />
     <Text Include="arm2.txt" />
-    <Text Include="arm2b.txt" />
-    <Text Include="arm2d.txt" />
     <Text Include="band.txt" />
     <Text Include="form_wst.txt" />
     <Text Include="kabel.txt" />

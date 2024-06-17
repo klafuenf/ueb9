@@ -64,12 +64,6 @@
     <Text Include="arm2.txt">
       <Filter>Ressourcendateien</Filter>
     </Text>
-    <Text Include="arm2b.txt">
-      <Filter>Ressourcendateien</Filter>
-    </Text>
-    <Text Include="arm2d.txt">
-      <Filter>Ressourcendateien</Filter>
-    </Text>
     <Text Include="band.txt">
       <Filter>Ressourcendateien</Filter>
     </Text>

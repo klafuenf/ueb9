@@ -31,9 +31,8 @@ extern bool init;
 struct Montauf {
   double x;
   double y;
-  double verschiebung;
   int greifer;
-  Montauf() : x(0), y(0), greifer(0), verschiebung(0) {}
+  Montauf() : x(0), y(0), greifer(0){} 
 };
 
 extern Montauf montauf[2];
@@ -48,9 +47,6 @@ extern double v_band;
 extern double form_ws[100][2];
 extern int anz_form_ws_punkte;
 
-extern double koerper[1000][2];
-extern int anz_koerper_punkte;
-
 /// extern double linien[1000][2][2];// [1000 linien] [je einen anfangs- und endpunkt] [je x und Y]
 /// extern int l; // Zaehler fuer die aktuell letzte Linie
 /// extern int linie_ein; // spruehdose an oder aus
@@ -58,6 +54,7 @@ extern int anz_koerper_punkte;
 extern HDC hdc;
 extern HWND hwnd;
 extern HPEN stift1, stift2, stift3, stift[5];
+extern HPEN rot_striche;
 extern double sollpunkt_0[2];  // der Sollpunkt im Bildschirmkoordinatensystem
 
 extern int anz_rob;
