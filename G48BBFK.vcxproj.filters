@@ -57,4 +57,30 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="arm1.txt">
+      <Filter>Ressourcendateien</Filter>
+    </Text>
+    <Text Include="arm2.txt">
+      <Filter>Ressourcendateien</Filter>
+    </Text>
+    <Text Include="arm2b.txt">
+      <Filter>Ressourcendateien</Filter>
+    </Text>
+    <Text Include="arm2d.txt">
+      <Filter>Ressourcendateien</Filter>
+    </Text>
+    <Text Include="band.txt">
+      <Filter>Ressourcendateien</Filter>
+    </Text>
+    <Text Include="form_wst.txt">
+      <Filter>Ressourcendateien</Filter>
+    </Text>
+    <Text Include="kabel.txt">
+      <Filter>Ressourcendateien</Filter>
+    </Text>
+    <Text Include="koerper8.txt">
+      <Filter>Ressourcendateien</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
