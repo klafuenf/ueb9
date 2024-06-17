@@ -231,13 +231,6 @@ void unterprog1(HWND hwnd, HDC hdc, RECT rect) {
   Robbi[0].ye = 80;
   bewegen(hwnd);
   Robbi[0].linie_ein = 0;
-  for (i = 0; i < anz_koerper_punkte; i++) {
-    Robbi[0].xe = koerper[i][0];
-    Robbi[0].ye = koerper[i][1];
-    bewegen(hwnd);
-    Robbi[0].linie_ein = 1;
-  }
-  Robbi[0].linie_ein = 0;
 }  // unterprog1
 
 void PaintArm(HWND hwnd, double arm[][2], int anz_p) {
