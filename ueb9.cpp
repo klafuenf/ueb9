@@ -109,6 +109,9 @@ void unterprog1(HWND hwnd, HDC hdc, RECT rect) {
   rr.ya = rr.grundposition[1];
 
   int wst_zaehler = -1;
+  //*************************************************************************************************
+  // BEGINN ABLAUF 
+
   for (i = 0; i < anz_kabel; i++) {
     double kabel_laenge = kabel[i];
     // sichere Grundposition
@@ -177,7 +180,7 @@ void unterprog1(HWND hwnd, HDC hdc, RECT rect) {
     rr.ye = ma_r.y;
     bewegen(hwnd);
 
-    rl.l = -1;  // gerade Linie loeschen
+    rl.l = -1;  // gerade Linie loeschen:   SINUS FUNKTION WIRD ANSCHLIESSEND GEMALT
 
     wst[wst_zaehler - 1].greifer = 1;  // Werkstueck aufgreifen
     wst[wst_zaehler].greifer = 2;
@@ -210,29 +213,11 @@ void unterprog1(HWND hwnd, HDC hdc, RECT rect) {
 
   bewegen(hwnd);
   return;
-  Robbi[0].xe = wst[3].x + t_max * v_band;
-  Robbi[0].ye = wst[3].y;
-
-  Robbi[1].xe = wst[3].x + t_max * v_band;
-  Robbi[1].ye = wst[3].y;
-
-  bewegen(hwnd);
-
-  Robbi[1].xe = 250;
-  Robbi[1].ye = 50;
-
-  wst[3].greifer = 1;
-
-  Robbi[0].xe = 200;
-  Robbi[0].ye = 80;
-  bewegen(hwnd);
-  wst[3].greifer = 0;  // nicht gegriffen
-  Robbi[0].xe = 300;
-  Robbi[0].ye = 80;
-  bewegen(hwnd);
-  Robbi[0].linie_ein = 0;
+  
+  
 }  // unterprog1
 
+   //FARBEN 
 void PaintArm(HWND hwnd, double arm[][2], int anz_p) {
   double r = 4;
 
@@ -288,7 +273,7 @@ void PaintWst(HWND hwnd, struct element* ws, int anz_wst) {
       PaintPolygon(hwnd, form_wsn, anz_form_ws_punkte);
     }
 }
-
+ //Montageaufnahme über Rechnteck malen
 void PaintMontauf(HWND hwnd, Montauf* ma, int anz_ma) {
   int r = 20;
   for (int i = 0; i < anz_ma; i++) {

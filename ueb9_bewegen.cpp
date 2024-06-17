@@ -17,7 +17,7 @@ void bewegen(HWND hwnd) {
   static double gesamtzeit = 0;
   for (i = 0; i < anz_rob; i++) {
     if (Robbi[i].linie_ein == 1) {
-      Robbi[i].init_linie();
+      Robbi[i].init_linie(); //Linie malen
     }
   }
   for (t = 0; t <= t_max; t = t + t_step) {
@@ -40,6 +40,7 @@ void bewegen(HWND hwnd) {
         wst[i].x = rr.getposx();
         wst[i].y = rr.getposy();
       }
+      // NOCH FEHLEND: BEWEGUNG AUF DEM BAND
       if (wst[i].greifer == 3)  // vom band gegriffen
       {
         wst[i].x = wst[i].x + v_band * t_step;
@@ -74,7 +75,7 @@ void bewegen(HWND hwnd) {
     }
     SetWindowText(hwnd, wtext);  // Titelleiste akt.
 
-    Sleep(t_step);
+    Sleep(t_step); //********  20millisec warten
     gesamtzeit = gesamtzeit + t_step;
     // Das Programm wird t-step lang gestoppt. Wenn man davon ausgeht, dass die Rechenzeit gegen Null geht, kann man an dieser Stelle auch die Gesamtzeit mit
     // t_step hochzaehlen
